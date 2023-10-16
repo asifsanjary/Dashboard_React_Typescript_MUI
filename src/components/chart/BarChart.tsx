@@ -59,17 +59,10 @@ const BarChart: React.FC = () => {
                 width={chartSize.width}
                 height={300}
             >
-                {isScreenSmall ? (
-                    <VictoryAxis
-                        style={{ axis: { stroke: "none" }, ticks: { stroke: "none" }, tickLabels: { fill: 'none' }, grid: { stroke: "transparent" }, }}
-                    />
-                ) :
-                    (
-                        <VictoryAxis
-                            style={{ axis: { stroke: "none" }, ticks: { stroke: "none" }, tickLabels: { fontWeight: 'bold' }, grid: { stroke: "transparent" }, }}
-                        />
-                    )
-                }
+
+                <VictoryAxis
+                    style={{ axis: { stroke: "none" }, ticks: { stroke: "none" }, tickLabels: { fontSize: isScreenSmall ? 7 : 12, fontWeight: 'bold' }, grid: { stroke: "transparent" }, }}
+                />
                 <VictoryBar
                     data={data}
                     style={{
