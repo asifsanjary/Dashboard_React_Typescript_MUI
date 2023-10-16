@@ -11,12 +11,17 @@ interface PersonCardProps {
     name: string;
     pictureUrl: string;
     role: string;
+    isSmallScreen: boolean;
 }
 
-const PersonCard: React.FC<PersonCardProps> = ({ name, pictureUrl, role }) => {
+const PersonCard: React.FC<PersonCardProps> = ({ name, pictureUrl, role, isSmallScreen }) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleAvatarClick = (event: React.MouseEvent<HTMLDivElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -25,22 +30,31 @@ const PersonCard: React.FC<PersonCardProps> = ({ name, pictureUrl, role }) => {
     };
 
     return (
-        <Paper elevation={3} style={{ padding: 5, display: 'flex', alignItems: 'center', backgroundColor: "#2D2D69", margin: "8px", marginTop: "auto" }}>
-            <Avatar alt={name} src={pictureUrl} />
-            <div style={{ marginLeft: 16 }}>
-                <Typography variant="body2" component="div" style={{ fontWeight: 'bold', marginBottom: '0px', paddingBottom: '0px' }}>
-                    {name}
-                </Typography>
-                <Typography variant="caption" color="#d5d5d5" style={{ fontSize: '0.6rem', marginTop: '0px', paddingBottom: '0px' }}>{role}</Typography>
-            </div>
-            <IconButton
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-                style={{ marginLeft: 'auto' }}
-            >
-                <ExpandMoreIcon />
-            </IconButton>
+        <Paper elevation={3} style={{ padding: 5, display: 'flex', alignItems: 'center', backgroundColor: "#2D2D69", margin: "8px", marginTop: "auto", borderRadius: isSmallScreen ? "50%" : "0%" }}>
+            {!isSmallScreen ? (<>
+                <Avatar alt={name} src={pictureUrl} />
+                <div style={{ marginLeft: 16 }}>
+                    <Typography variant="body2" component="div" style={{ fontWeight: 'bold', marginBottom: '0px', paddingBottom: '0px' }}>
+                        {name}
+                    </Typography>
+                    <Typography variant="caption" color="#d5d5d5" style={{ fontSize: '0.6rem', marginTop: '0px', paddingBottom: '0px' }}>{role}</Typography>
+                </div>
+
+                <IconButton
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={handleClick}
+                    style={{ marginLeft: 'auto' }}
+                >
+                    <ExpandMoreIcon />
+                </IconButton>
+            </>
+            ) : (
+                <div onClick={handleAvatarClick}>
+                    <Avatar alt={name} src={pictureUrl} />
+                </div>
+            )
+            }
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
