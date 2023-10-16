@@ -13,6 +13,7 @@ const SearchBar = ({ width, marginTop }: SearchBarProps) => {
     const CustomTextField = styled(TextField)({
         width: `${width}`,
         marginTop: `${marginTop}`,
+        backgroundColor: "#FAFBFF",
     });
 
     return (

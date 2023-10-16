@@ -12,9 +12,23 @@
   margin: 0px;
 }
 
-@media screen and (min-width: 1000px) {
-  .barchart-container-responsive {
-    height: 290px;
-    width: 680px;
+@media (max-width: 768px) {
+  .barchart-title-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .barchart-container {
+    width: 100%;
+    height: 380px;
+  }
+}
+
+@media (max-width: 480px) {
+  .barchart-container {
+    width: 100%;
+    height: 280px;
   }
 }

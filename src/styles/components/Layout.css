@@ -1,5 +1,6 @@
 .Layout-container {
   display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
 }
 
@@ -25,28 +26,24 @@
 /* Media query for screens narrower than 768px (adjust as needed) */
 @media (max-width: 768px) {
   .Layout-nav {
-    width: 100%; /* Make the sidebar 100% width on smaller screens */
-    position: relative; /* Remove the fixed positioning */
-    top: auto;
-    bottom: auto;
-    overflow-y: hidden; /* Hide overflow to prevent a scrollbar */
+    background: #040440;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
   .Main-content {
     margin-left: 0px;
-    display: flex;
-    flex-direction: column;
-    background: #f5f6f8;
-    flex-grow: 5;
   }
 }
 
 .Layout-nav-active-item {
-  align-items: center;
-  color: white;
   display: flex;
-  justify-content: center;
+  color: white;
   align-items: center;
+  justify-content: flex-start;
+  margin-left: 15px;
 }
 
 .nav-link-common {

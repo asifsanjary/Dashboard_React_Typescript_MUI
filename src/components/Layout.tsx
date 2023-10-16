@@ -12,7 +12,7 @@ const Layout = () => {
     return (
         <div className='Layout-container'>
             <div className='Layout-nav'>
-                <h2 className='Layout-nav-active-item'><span><TokenOutlinedIcon />&nbsp;&nbsp;{getPathName(location.pathname)}</span></h2>
+                <div className='Layout-nav-active-item'><TokenOutlinedIcon style={{ fontSize: "40px" }} /><h2>{getPathName(location.pathname)}</h2></div>
                 {
                     routes.map((route, index) => (
                         <NavLink
@@ -24,14 +24,14 @@ const Layout = () => {
                             {({ isActive }) => {
                                 if (isActive) return (
                                     <div className='nav-link-item nav-link-item-common'>
-                                        <span className='nav-link-item-icon-text'>{route.icon}&nbsp;&nbsp;&nbsp;{route.name}</span>
+                                        <span className='nav-link-item-icon-text'>{route.icon}&nbsp;&nbsp;&nbsp;<span style={{ fontSize: "12px", fontWeight: "bold" }}>{route.name}</span></span>
                                     </div>
                                 )
                                 else {
                                     return (
                                         <div className='nav-link-item nav-link-item-common'>
-                                            <span className='nav-link-item-icon-text'>{route.icon}&nbsp;&nbsp;&nbsp;{route.name}</span>
-                                            <span className='nav-link-item-arrow'><ArrowForwardIosOutlinedIcon /></span>
+                                            <span className='nav-link-item-icon-text'>{route.icon}&nbsp;&nbsp;&nbsp;<span style={{ fontSize: "12px" }}>{route.name}</span></span>
+                                            <span className='nav-link-item-arrow'><ArrowForwardIosOutlinedIcon style={{ fontSize: "10px" }} /></span>
                                         </div>
                                     )
                                 }

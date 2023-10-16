@@ -25,25 +25,25 @@ const summary: ISummary[] = [
     {
         icon: <ArticleOutlinedIcon style={{ color: '#A203FF', fontSize: "50px" }} />,
         title: "Orders",
-        amount: 2.4,
+        amount: 22.4,
         isUp: false,
-        percent: 2,
+        percent: 22.6,
         hexColor: '#E7DBFF'
     },
     {
         icon: <AccountBalanceWalletOutlinedIcon style={{ color: '#0456BF', fontSize: "50px" }} />,
         title: "Balance",
-        amount: 2.4,
+        amount: 12.9,
         isUp: false,
-        percent: 2,
+        percent: 56.4,
         hexColor: '#CCF2FF'
     },
     {
         icon: <LocalMallOutlinedIcon style={{ color: '#DA0016', fontSize: "50px" }} />,
         title: "Total Sales",
-        amount: 89,
+        amount: 48.9,
         isUp: true,
-        percent: 11,
+        percent: 11.9,
         hexColor: '#FFAED7'
     },
 ]

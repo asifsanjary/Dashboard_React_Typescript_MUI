@@ -1,11 +1,12 @@
 import React from 'react'
-import { IProductData } from '../../data/productData'
+import { IProductData } from '../../data/productData';
+import '../../styles/components/productsell/Product.css';
 
 const Product = ({ url, title, subTitle, stock, price, totalSales }: IProductData) => {
     return (
-        <div style={{ display: 'flex', margin: "0px 0px 15px 15px", alignItems: 'center' }}>
+        <div className='productsell-product'>
             <div style={{ margin: "0px 10px 0px 5px" }} ><img alt={title} width='66px' height='36px' src={url} style={{ borderRadius: '5px' }} /></div>
-            <div style={{ display: 'flex', flexDirection: 'column', flexGrow: '5', margin: "0px 0px 0px 5px" }}>
+            <div className='productsell-product-name'>
                 <p style={{ fontSize: '15px', fontWeight: 'bold', margin: "0px 5px 5px 0px", padding: "0px" }}>{title}</p>
                 <p style={{ fontSize: '10px', color: '#D5D5D5', margin: "0px", padding: "0px" }}>{subTitle}</p>
             </div>

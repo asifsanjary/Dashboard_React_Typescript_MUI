@@ -12,6 +12,7 @@ const Dashboard = () => {
             <div className='dashboard-summary-container'>
                 {summary.map((item, index) => (
                     <SummaryBox
+                        key={index}
                         icon={item.icon}
                         title={item.title}
                         amount={item.amount}

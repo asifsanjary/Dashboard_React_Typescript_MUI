@@ -1,18 +1,20 @@
-@media screen and (min-width: 1000px) {
-  .piechart-container-responsive {
-    height: 290px;
-    width: 260px;
-  }
-}
-
 .piechart-container {
   background: white;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin-left: 35px;
+  margin-left: 5px;
   margin-top: 0px;
   align-items: center;
+  height: 290px;
+  width: 260px;
+}
+
+@media (max-width: 768px) {
+  .piechart-container {
+    margin-top: 10px;
+    margin-left: 0px;
+  }
 }
 
 .piechart-title-container {

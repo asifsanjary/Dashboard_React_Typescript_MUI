@@ -14,5 +14,22 @@
 
 .dashboard-chart-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 35px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .dashboard-summary-container {
+    flex-direction: column;
+  }
+
+  .dashboard-chart-container {
+    flex-direction: column;
+  }
 }

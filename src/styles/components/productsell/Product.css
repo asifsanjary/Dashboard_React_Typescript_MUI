@@ -1,0 +1,24 @@
+.productsell-product {
+  display: flex;
+  margin: 0px 0px 15px 15px;
+  align-items: center;
+}
+
+.productsell-product-name {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 5;
+  margin: 0px 0px 0px 5px;
+}
+
+@media (max-width: 768px) {
+  .productsell-product-name {
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  .productsell-product {
+    flex-direction: column;
+    margin: 0px 0px 15px 0px;
+  }
+}
