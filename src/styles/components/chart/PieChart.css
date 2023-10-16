@@ -3,18 +3,10 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin-left: 5px;
+  margin-left: 45px;
   margin-top: 0px;
   align-items: center;
-  height: 290px;
-  width: 260px;
-}
-
-@media (max-width: 768px) {
-  .piechart-container {
-    margin-top: 10px;
-    margin-left: 0px;
-  }
+  height: 300px;
 }
 
 .piechart-title-container {
@@ -26,10 +18,28 @@
 
 .piechart-circle-shadow {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 200px;
-  height: 200px;
   border-radius: 50%;
   background: white;
-  margin: 15px 10px 5px 10px;
+  margin: 15px 20px 5px 20px;
   position: relative;
+}
+
+@media (max-width: 768px) {
+  .piechart-container {
+    margin-top: 10px;
+    margin-left: 0px;
+    height: 360px;
+  }
+
+  .piechart-title-container {
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1600px) {
+  .piechart-container {
+    height: 360px;
+  }
 }

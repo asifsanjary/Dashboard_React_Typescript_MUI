@@ -1,23 +1,30 @@
 import * as React from 'react';
 import { VictoryChart, VictoryBar, VictoryAxis, VictoryTheme } from 'victory';
 import '../../styles/components/chart/BarChart.css';
-import useWindowDimensions from '../../hooks/useWindowDimentions';
 
 const BarChart: React.FC = () => {
 
     const [interval, setInterval] = React.useState('');
+    const [chartSize, setChartSize] = React.useState({ width: 400, height: 300 });
+    const [isScreenSmall, setScreenSmall] = React.useState(false);
+
+    React.useEffect(() => {
+        function handleResize() {
+            setChartSize({ width: window.innerWidth * 0.7, height: 300 });
+            setScreenSmall(window.innerWidth <= 750);
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setInterval(event.target.value as string);
     };
-
-    const { screenWidth } = useWindowDimensions();
-
-    const isLabelVisible = React.useMemo(() => {
-        if (screenWidth && screenWidth <= 650) return false;
-        else return true;
-    }, [screenWidth]);
-
 
     const data = [
         { x: 'Jan', y: 10, color: '#F2EFFF' },
@@ -49,21 +56,28 @@ const BarChart: React.FC = () => {
             </div>
             <VictoryChart
                 theme={VictoryTheme.material}
-                width={650}
-                height={240}
+                width={chartSize.width}
+                height={300}
             >
-                <VictoryAxis
-                    style={{ axis: { stroke: "none" }, ticks: { stroke: "none" }, tickLabels: { fontWeight: 'bold' }, grid: { stroke: "transparent" }, }}
-                />
-
+                {isScreenSmall ? (
+                    <VictoryAxis
+                        style={{ axis: { stroke: "none" }, ticks: { stroke: "none" }, tickLabels: { fill: 'none' }, grid: { stroke: "transparent" }, }}
+                    />
+                ) :
+                    (
+                        <VictoryAxis
+                            style={{ axis: { stroke: "none" }, ticks: { stroke: "none" }, tickLabels: { fontWeight: 'bold' }, grid: { stroke: "transparent" }, }}
+                        />
+                    )
+                }
                 <VictoryBar
                     data={data}
                     style={{
                         data: {
-                            fill: ({ datum }) => datum.color, // Set different colors for each bar
-                            width: isLabelVisible ? 40 : 8, // Set the same width for all bars
+                            fill: ({ datum }) => datum.color,
+                            width: isScreenSmall ? 10 : 40,
                         },
-                        labels: { fontSize: isLabelVisible ? 10 : 5 },
+                        labels: { fontSize: 10 },
                     }}
                     cornerRadius={{ top: 5, bottom: 5 }}
                 />

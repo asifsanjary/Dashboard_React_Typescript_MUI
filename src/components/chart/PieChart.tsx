@@ -16,18 +16,18 @@ const data: DataPoint[] = [
 
 const PieChart: React.FC = () => {
     return (
-        <div className='piechart-container piechart-container-responsive'>
+        <div className='piechart-container'>
             <div className='piechart-title-container'>
                 <h3 style={{ margin: "5px 0px 0px 5px", padding: "0px" }}>Customers</h3>
                 <h6 style={{ margin: "5px 0px 0px 5px", padding: "0px", color: "#D5D5D5" }}>Customers that buy products</h6>
             </div>
             <div className='piechart-circle-shadow'>
                 <VictoryPie
-                    width={200}
-                    height={200}
+                    width={280}
+                    height={280}
                     data={data}
-                    innerRadius={({ datum }) => 30 + (7 * ((3 * datum.y) / 50))}
-                    radius={({ datum }) => 60 + (7 * (50 / datum.y))}
+                    innerRadius={({ datum }) => 30 + (7 * ((5 * datum.y) / 50))}
+                    radius={({ datum }) => 80 + (7 * (50 / datum.y))}
                     colorScale={data.map((item) => item.color)}
                     labels={() => ''}
                     padding={{ top: 0, bottom: 0, left: 0, right: 0 }}

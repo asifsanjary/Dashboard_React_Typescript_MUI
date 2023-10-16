@@ -3,6 +3,8 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  width: 90%;
+  height: 300px;
 }
 
 .barchart-title-container {
@@ -17,18 +19,15 @@
     flex-direction: column;
     align-items: center;
   }
-}
 
-@media (max-width: 768px) {
   .barchart-container {
-    width: 100%;
-    height: 380px;
+    width: 65%;
+    height: 360px;
   }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 1600px) {
   .barchart-container {
-    width: 100%;
-    height: 280px;
+    height: 360px;
   }
 }

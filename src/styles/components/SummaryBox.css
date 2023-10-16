@@ -7,9 +7,16 @@
   padding: 10px;
 }
 
+@media (max-width: 1150px) {
+  .summary-container {
+    margin-left: 5px;
+  }
+}
+
 @media (max-width: 768px) {
   .summary-container {
     margin-top: 5px;
+    margin-left: 0px;
   }
 }
 
