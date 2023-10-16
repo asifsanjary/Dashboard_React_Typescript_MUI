@@ -1,10 +1,11 @@
 import React from 'react'
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import '../styles/components/Layout.css';
-import routes, { getPathName } from '../routes';
+import routes, { getPathName } from '../data/routes';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import TokenOutlinedIcon from '@mui/icons-material/TokenOutlined';
 import Header from './Header';
+import PersonCard from './PersonCard';
 
 const Layout = () => {
     const location = useLocation();
@@ -20,13 +21,26 @@ const Layout = () => {
                             }
                             key={index}
                             to={route.path}>
-                            <div className='nav-link-item nav-link-item-common'>
-                                <span className='nav-link-item-icon-text'>{route.icon}&nbsp;&nbsp;&nbsp;{route.name}</span>
-                                <span className='nav-link-item-arrow'><ArrowForwardIosOutlinedIcon /></span>
-                            </div>
+                            {({ isActive }) => {
+                                if (isActive) return (
+                                    <div className='nav-link-item nav-link-item-common'>
+                                        <span className='nav-link-item-icon-text'>{route.icon}&nbsp;&nbsp;&nbsp;{route.name}</span>
+                                    </div>
+                                )
+                                else {
+                                    return (
+                                        <div className='nav-link-item nav-link-item-common'>
+                                            <span className='nav-link-item-icon-text'>{route.icon}&nbsp;&nbsp;&nbsp;{route.name}</span>
+                                            <span className='nav-link-item-arrow'><ArrowForwardIosOutlinedIcon /></span>
+                                        </div>
+                                    )
+                                }
+
+                            }}
                         </NavLink>
                     ))
                 }
+                <PersonCard name='Evano' role='Project Manager' pictureUrl='https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg' />
             </div>
             <div className='Main-content'>
                 <Header />

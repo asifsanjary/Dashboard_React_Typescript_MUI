@@ -1,0 +1,33 @@
+@media screen and (min-width: 1000px) {
+  .piechart-container-responsive {
+    height: 290px;
+    width: 260px;
+  }
+}
+
+.piechart-container {
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 35px;
+  margin-top: 0px;
+  align-items: center;
+}
+
+.piechart-title-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  align-self: flex-start;
+}
+
+.piechart-circle-shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: white;
+  margin: 15px 10px 5px 10px;
+  position: relative;
+}

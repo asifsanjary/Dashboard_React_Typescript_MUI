@@ -3,14 +3,37 @@
   align-items: stretch;
 }
 
-@media screen and (min-width: 800px) {
+.Layout-nav {
+  background: #040440;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.Main-content {
+  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+  background: #f5f6f8;
+  flex-grow: 5;
+}
+
+/* Media query for screens narrower than 768px (adjust as needed) */
+@media (max-width: 768px) {
   .Layout-nav {
-    background: #040440;
-    height: 100vh;
-    width: 220px;
+    width: 100%; /* Make the sidebar 100% width on smaller screens */
+    position: relative; /* Remove the fixed positioning */
+    top: auto;
+    bottom: auto;
+    overflow-y: hidden; /* Hide overflow to prevent a scrollbar */
   }
 
   .Main-content {
+    margin-left: 0px;
     display: flex;
     flex-direction: column;
     background: #f5f6f8;

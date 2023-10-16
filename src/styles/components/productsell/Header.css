@@ -1,0 +1,16 @@
+.productsell-header-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.productsell-header-container-common {
+  display: flex;
+  align-items: stretch;
+  margin: 15px 0px 0px 15px;
+  alignitems: center;
+}
+
+.productsell-header-container-bottom {
+  color: #d5d5d5;
+  fontsize: 11px;
+}

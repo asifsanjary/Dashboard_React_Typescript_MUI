@@ -9,7 +9,7 @@ const Header = () => {
             <h2>Hello Shahrukh
                 <WavingHandOutlinedIcon style={{ color: '#DAB08D' }} />
                 <span>&#44;</span></h2>
-            <SearchBar />
+            <SearchBar width='150px' marginTop='0px' />
         </div>
     )
 }

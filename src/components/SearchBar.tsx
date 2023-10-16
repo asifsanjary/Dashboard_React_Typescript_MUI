@@ -3,11 +3,18 @@ import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled } from '@mui/system';
 
-const CustomTextField = styled(TextField)({
-    width: '200px', // Set the desired width
-});
+interface SearchBarProps {
+    width: string;
+    marginTop: string;
+}
 
-const SearchBar = () => {
+const SearchBar = ({ width, marginTop }: SearchBarProps) => {
+
+    const CustomTextField = styled(TextField)({
+        width: `${width}`,
+        marginTop: `${marginTop}`,
+    });
+
     return (
         <CustomTextField
             placeholder="Search"
