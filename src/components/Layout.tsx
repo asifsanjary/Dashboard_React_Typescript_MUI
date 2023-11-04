@@ -1,14 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { Outlet, NavLink, useLocation } from "react-router-dom";
-import '../styles/components/Layout.css';
 import routes, { getPathName } from '../data/routes';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import TokenOutlinedIcon from '@mui/icons-material/TokenOutlined';
 import Header from './Header';
 import PersonCard from './PersonCard';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
+import { Grid, Stack, Typography } from '@mui/material';
 
 type SelectChangeEvent = {
     target: {
@@ -42,65 +39,156 @@ const Layout = () => {
     };
 
     return (
-        <div className='Layout-container'>
-            <div className='Layout-nav'>
-                <div className='Layout-nav-active-item'><TokenOutlinedIcon style={{ fontSize: "40px" }} /><h2>{getPathName(location.pathname)}</h2></div>
-                {isScreenSmall ?
-                    (
-                        <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
-                            <Select
-                                value={selectedOption}
-                                onChange={handleChange}
-                                style={{ backgroundColor: '#2d2d69', color: 'white', flexGrow: "2" }}
-                            >
-                                {routes.map((route, index) => (
-                                    <MenuItem style={{ backgroundColor: '#040440', color: 'white', display: "flex", alignItems: "center" }} value={route.path} key={index}>
-                                        <ListItemIcon style={{ color: 'white' }}>
-                                            {route.icon}
-                                        </ListItemIcon>
-                                        <NavLink to={route.path} style={{ color: 'white' }}>{route.name}</NavLink>
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                            <PersonCard name='Evano' role='Project Manager' pictureUrl='https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg' isSmallScreen={isScreenSmall} />
-                        </div>
-                    ) : (
-                        <>
-                            {routes.map((route, index) => (
-                                <NavLink
-                                    className={({ isActive }) =>
-                                        isActive ? "nav-link-active nav-link-common" : "nav-link-common"
-                                    }
-                                    key={index}
-                                    to={route.path}>
-                                    {({ isActive }) => {
-                                        if (isActive) return (
-                                            <div className='nav-link-item nav-link-item-common'>
-                                                <span className='nav-link-item-icon-text'>{route.icon}&nbsp;&nbsp;&nbsp;<span style={{ fontSize: "12px", fontWeight: "bold" }}>{route.name}</span></span>
-                                            </div>
-                                        )
-                                        else {
-                                            return (
-                                                <div className='nav-link-item nav-link-item-common'>
-                                                    <span className='nav-link-item-icon-text'>{route.icon}&nbsp;&nbsp;&nbsp;<span style={{ fontSize: "12px" }}>{route.name}</span></span>
-                                                    <span className='nav-link-item-arrow'><ArrowForwardIosOutlinedIcon style={{ fontSize: "10px" }} /></span>
-                                                </div>
-                                            )
-                                        }
+        <Grid
+            container
+            direction="row"
+            md={12}
+            lg={12}
+            sx={{
+                height: "100vh"
+            }}>
+            <Grid
+                item
+                container
+                direction="column"
+                lg={2}
+                md={3}
+                sx={{
+                    background: "#040440",
+                    position: "fixed",
+                    overflowY: "auto",
+                    top: "0px",
+                    bottom: "0px",
+                    height: "100vh"
+                }}
+            >
+                <Grid
+                    item
+                    container
+                    direction="row"
+                    sx={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginTop: "10px",
+                        marginBottom: "10px",
+                    }}
+                >
+                    <TokenOutlinedIcon
+                        style=
+                        {{
+                            fontSize: "1.5rem",
+                            color: "white"
+                        }}
+                    />
+                    <Typography
+                        sx={{
+                            fontSize: "1.5rem",
+                            color: "white"
+                        }}
+                    >
+                        {getPathName(location.pathname)}
+                    </Typography>
+                </Grid>
+
+                {routes.map((route, index) => (
+                    <NavLink
+                        style={{
+                            textDecoration: "none",
+                        }}
+                        key={index}
+                        to={route.path}>
+                        {({ isActive }) => {
+                            if (isActive) return (
+                                <Stack
+                                    direction="row"
+                                    justifyContent="flex-start"
+                                    alignItems="center"
+                                    gap="4px"
+                                    sx={{
+                                        background: " #2d2d69",
+                                        color: "white",
+                                        margin: "8px",
+                                        borderRadius: "4px",
+                                        padding: "6px",
                                     }}
-                                </NavLink>
-                            ))}
-                            <PersonCard name='Evano' role='Project Manager' pictureUrl='https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg' isSmallScreen={isScreenSmall} />
-                        </>
-                    )
-                }
-            </div>
-            <div className='Main-content'>
+                                >
+                                    {route.icon}
+                                    <Typography
+                                        sx=
+                                        {{
+                                            fontSize: "12px"
+                                        }}
+                                    >
+                                        {route.name}
+                                    </Typography>
+                                </Stack>
+                            );
+                            else {
+                                return (
+                                    <Stack
+                                        direction="row"
+                                        justifyContent="space-between"
+                                        alignItems="center"
+                                        sx={{
+                                            color: "white",
+                                            margin: "4px",
+                                            borderRadius: "4px",
+                                            padding: "6px",
+                                        }}
+                                    >
+                                        <Stack
+                                            direction="row"
+                                            justifyContent="flex-start"
+                                            alignItems="center"
+                                            gap="4px"
+                                        >
+                                            {route.icon}
+                                            <Typography
+                                                sx=
+                                                {{
+                                                    fontSize: "12px"
+                                                }}
+                                            >
+                                                {route.name}
+                                            </Typography>
+                                        </Stack>
+                                        <ArrowForwardIosOutlinedIcon
+                                            style=
+                                            {{
+                                                fontSize: "10px",
+
+                                            }}
+                                        />
+                                    </Stack>
+                                );
+                            }
+                        }}
+                    </NavLink>
+                ))}
+                <PersonCard name='Evano' role='Project Manager' pictureUrl='https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg' isSmallScreen={isScreenSmall} />
+            </Grid>
+            {/*
+                https://mui.com/material-ui/customization/breakpoints/#default-breakpoints
+                xs, extra-small: 0px
+                sm, small: 600px
+                md, medium: 900px
+                lg, large: 1200px
+                xl, extra-large: 1536px
+            */}
+            <Grid
+                item
+                container
+                direction="column"
+                sx={{
+                    marginLeft: { lg: "200px", md: "225px" },
+                    background: "#f5f6f8",
+                }}
+            >
                 <Header />
                 <Outlet />
-            </div>
-        </div>
-    )
-}
+            </Grid>
+        </Grid>
+    );
+};
 
-export default Layout
+export default Layout;
