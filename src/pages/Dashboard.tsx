@@ -1,15 +1,23 @@
-import React from 'react'
-import '../styles/pages/Dashboard.css';
 import SummaryBox from '../components/SummaryBox';
 import summary from '../data/summary';
 import BarChart from '../components/chart/BarChart';
 import PieChart from '../components/chart/PieChart';
 import ProductSell from '../components/productsell/ProductSell';
+import { Stack } from '@mui/material';
 
 const Dashboard = () => {
     return (
-        <div className='dashboard-container'>
-            <div className='dashboard-summary-container'>
+        <Stack
+            direction="column"
+            sx={{
+                margin: "0px 50px"
+            }}
+            spacing={4}
+        >
+            <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center">
                 {summary.map((item, index) => (
                     <SummaryBox
                         key={index}
@@ -20,14 +28,18 @@ const Dashboard = () => {
                         percent={item.percent}
                         hexColor={item.hexColor} />
                 ))}
-            </div>
-            <div className='dashboard-chart-container'>
+            </Stack>
+            <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+            >
                 <BarChart />
                 <PieChart />
-            </div>
+            </Stack>
             <ProductSell />
-        </div>
-    )
-}
+        </Stack>
+    );
+};
 
-export default Dashboard
+export default Dashboard;

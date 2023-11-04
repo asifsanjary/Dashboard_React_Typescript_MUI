@@ -108,8 +108,9 @@ const Layout = () => {
                                         background: " #2d2d69",
                                         color: "white",
                                         margin: "8px",
-                                        borderRadius: "4px",
+                                        borderRadius: "6px",
                                         padding: "6px",
+                                        boxShadow: '0px 1px 6px #2d2d69',
                                     }}
                                 >
                                     {route.icon}
@@ -180,7 +181,7 @@ const Layout = () => {
                 container
                 direction="column"
                 sx={{
-                    marginLeft: { lg: "200px", md: "225px" },
+                    marginLeft: { lg: "200px", md: "225px", xl: "256px" },
                     background: "#f5f6f8",
                 }}
             >

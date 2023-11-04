@@ -10,20 +10,40 @@ interface SearchBarProps {
 
 const SearchBar = ({ width, marginTop }: SearchBarProps) => {
 
-    const CustomTextField = styled(TextField)({
+    const CustomField = styled(TextField)(({ theme }) => ({
         width: `${width}`,
         marginTop: `${marginTop}`,
-        backgroundColor: "#FAFBFF",
-    });
+        backgroundColor: "white",
+        fontSize: "2rem",
+        boxShadow: '0px 3px 6px #d3d2d2',
+        borderRadius: "6px",
+        color: '#e7e7e7',
+        '& label.Mui-focused': {
+            color: '#d3d2d2',
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: '#d3d2d2',
+        },
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+                borderColor: 'white',
+            },
+            '&:hover fieldset': {
+                borderColor: 'white',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: '#d3d2d2',
+            },
+        },
+    }));
 
     return (
-        <CustomTextField
+        <CustomField
             placeholder="Search"
-            variant="outlined"
             size="small"
             InputProps={{
                 startAdornment: (
-                    <SearchIcon style={{ color: 'gray' }} />
+                    <SearchIcon style={{ color: 'gray', fontSize: "1.5rem" }} />
                 ),
             }}
         />
