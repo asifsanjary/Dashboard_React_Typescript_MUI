@@ -107,7 +107,7 @@ const Layout = () => {
                                     sx={{
                                         background: " #2d2d69",
                                         color: "white",
-                                        margin: "8px",
+                                        margin: "8px 16px",
                                         borderRadius: "6px",
                                         padding: "6px",
                                         boxShadow: '0px 1px 6px #2d2d69',
@@ -132,7 +132,7 @@ const Layout = () => {
                                         alignItems="center"
                                         sx={{
                                             color: "white",
-                                            margin: "4px",
+                                            margin: "8px 16px",
                                             borderRadius: "4px",
                                             padding: "6px",
                                         }}

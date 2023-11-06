@@ -1,49 +1,99 @@
-import * as React from 'react';
-import { VictoryChart, VictoryBar, VictoryAxis, VictoryTheme } from 'victory';
-import '../../styles/components/chart/BarChart.css';
+import React, { useEffect, useRef } from 'react';
+import { Stack } from '@mui/material';
+import echarts from 'echarts';
+import ReactECharts from 'echarts-for-react';
 
 const BarChart: React.FC = () => {
 
     const [interval, setInterval] = React.useState('');
-    const [chartSize, setChartSize] = React.useState({ width: 400, height: 300 });
-    const [isScreenSmall, setScreenSmall] = React.useState(false);
-
-    React.useEffect(() => {
-        function handleResize() {
-            setChartSize({ width: window.innerWidth * 0.7, height: 300 });
-            setScreenSmall(window.innerWidth <= 750);
-        }
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setInterval(event.target.value as string);
     };
 
-    const data = [
-        { x: 'Jan', y: 10, color: '#F2EFFF' },
-        { x: 'Feb', y: 15, color: '#F2EFFF' },
-        { x: 'Mar', y: 20, color: '#F2EFFF' },
-        { x: 'Apr', y: 5, color: '#F2EFFF' },
-        { x: 'May', y: 12, color: '#F2EFFF' },
-        { x: 'Jun', y: 18, color: '#F2EFFF' },
-        { x: 'Jul', y: 8, color: '#F2EFFF' },
-        { x: 'Aug', y: 25, color: '#5A32EA' },
-        { x: 'Sep', y: 14, color: '#F2EFFF' },
-        { x: 'Oct', y: 22, color: '#F2EFFF' },
-        { x: 'Nov', y: 7, color: '#F2EFFF' },
-        { x: 'Dec', y: 16, color: '#F2EFFF' },
+    const xLabels = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
     ];
 
+    const uData = [
+        { value: 10, color: '#F2EFFF' },
+        { value: 15, color: '#F2EFFF' },
+        { value: 20, color: '#F2EFFF' },
+        { value: 5, color: '#F2EFFF' },
+        { value: 12, color: '#F2EFFF' },
+        { value: 18, color: '#F2EFFF' },
+        { value: 8, color: '#F2EFFF' },
+        { value: 25, color: '#5A32EA' },
+        { value: 14, color: '#F2EFFF' },
+        { value: 22, color: '#F2EFFF' },
+        { value: 7, color: '#F2EFFF' },
+        { value: 16, color: '#F2EFFF' },
+    ];
+
+    const chartRef = useRef<any>(null);
+
+    useEffect(() => {
+        // Initialize ECharts
+        const chartInstance = chartRef.current.getEchartsInstance();
+
+        // Define your data
+        const data = {
+            categories: ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'],
+            values: [120, 200, 150, 80, 70],
+        };
+
+        // Create the chart
+        const option = {
+            title: {
+                text: 'Bar Chart Example',
+            },
+            tooltip: {},
+            xAxis: {
+                data: data.categories,
+            },
+            yAxis: {},
+            series: [
+                {
+                    name: 'Value',
+                    type: 'bar',
+                    data: data.values,
+                },
+            ],
+        };
+
+        // Set the chart option
+        chartInstance.setOption(option);
+    }, []);
+
     return (
-        <div className='barchart-container'>
-            <div className='barchart-title-container'>
+        <Stack
+            direction="column"
+            sx={{
+                borderRadius: "10px",
+                background: "white",
+                padding: "15px",
+                boxShadow: '0px 3px 10px #d3d2d2',
+                width: { sm: "300px", md: "500px", lg: "500px" },
+                height: { sm: "200px", md: "300px", lg: "300px" },
+            }}
+        >
+            <Stack
+                direction="row"
+                sx={{
+                    justifyContent: "space-between",
+                }}
+            >
                 <div>
                     <h3 style={{ margin: "5px 0px 0px 5px", padding: "0px" }}>Overview</h3>
                     <h6 style={{ margin: "5px 0px 0px 5px", padding: "0px", color: "#D5D5D5" }}>Monthly Earning</h6>
@@ -53,33 +103,9 @@ const BarChart: React.FC = () => {
                     <option value="monthly">Monthly</option>
                     <option value="yearly">Yearly</option>
                 </select>
-            </div>
-            <VictoryChart
-                theme={VictoryTheme.material}
-                width={chartSize.width}
-                height={300}
-            >
-
-                <VictoryAxis
-                    style={{ axis: { stroke: "none" }, ticks: { stroke: "none" }, tickLabels: { fontSize: isScreenSmall ? 7 : 12, fontWeight: 'bold' }, grid: { stroke: "transparent" }, }}
-                />
-                <VictoryBar
-                    data={data}
-                    style={{
-                        data: {
-                            fill: ({ datum }) => datum.color,
-                            width: isScreenSmall ? 10 : 40,
-                        },
-                        labels: { fontSize: 10 },
-                    }}
-                    cornerRadius={{ top: 5, bottom: 5 }}
-                />
-                <VictoryAxis
-                    dependentAxis
-                    style={{ axis: { stroke: 'none' }, ticks: { stroke: 'none' }, tickLabels: { fill: 'none' }, grid: { stroke: "transparent" }, }}
-                />
-            </VictoryChart>
-        </div>
+            </Stack>
+            <ReactECharts ref={chartRef} option={{}} style={{ height: '400px' }} />
+        </Stack>
     );
 };
 

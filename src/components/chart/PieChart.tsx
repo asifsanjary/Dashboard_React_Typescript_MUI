@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { VictoryPie } from 'victory';
-import '../../styles/components/chart/PieChart.css';
+import { Stack } from '@mui/material';
+import { relative } from 'path';
 
 interface DataPoint {
     x: string;
@@ -16,22 +16,36 @@ const data: DataPoint[] = [
 
 const PieChart: React.FC = () => {
     return (
-        <div className='piechart-container'>
-            <div className='piechart-title-container'>
+        <Stack
+            direction="column"
+            sx={{
+                borderRadius: "10px",
+                background: "white",
+                padding: "15px",
+                boxShadow: '0px 3px 10px #d3d2d2',
+                width: { sm: "200px", md: "300px" },
+                height: { sm: "200px", md: "300px" },
+            }}
+            alignItems="center"
+        >
+            <Stack
+                direction="column"
+                justifyContent={{ sm: "center", md: "flex-start" }}
+                alignSelf={{ sm: "center", md: "flex-start" }}
+            >
                 <h3 style={{ margin: "5px 0px 0px 5px", padding: "0px" }}>Customers</h3>
                 <h6 style={{ margin: "5px 0px 0px 5px", padding: "0px", color: "#D5D5D5" }}>Customers that buy products</h6>
-            </div>
-            <div className='piechart-circle-shadow'>
-                <VictoryPie
-                    width={280}
-                    height={280}
-                    data={data}
-                    innerRadius={({ datum }) => 30 + (7 * ((5 * datum.y) / 50))}
-                    radius={({ datum }) => 80 + (7 * (50 / datum.y))}
-                    colorScale={data.map((item) => item.color)}
-                    labels={() => ''}
-                    padding={{ top: 0, bottom: 0, left: 0, right: 0 }}
-                />
+            </Stack>
+            <Stack
+                sx={{
+                    width: "80%",
+                    position: "relative",
+                    borderRadius: "50%",
+                    background: "white",
+                    margin: "20px",
+                    boxShadow: '0px 3px 10px #d3d2d2',
+                }}>
+
                 <div
                     style={{
                         position: 'absolute',
@@ -43,8 +57,8 @@ const PieChart: React.FC = () => {
                 >
                     <p style={{ textAlign: "center", fontSize: "10px", fontWeight: "bold" }}>< span style={{ fontSize: "20px", fontWeight: "bolder" }}>65%</span><br />Total New<br />Customers</p>
                 </div>
-            </div>
-        </div>
+            </Stack>
+        </Stack>
     );
 };
 
