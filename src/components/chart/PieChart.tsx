@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Stack } from '@mui/material';
-import { relative } from 'path';
+import ReactECharts from 'echarts-for-react';
 
 interface DataPoint {
     x: string;
@@ -15,6 +15,49 @@ const data: DataPoint[] = [
 ];
 
 const PieChart: React.FC = () => {
+    const chartRef = useRef<any>(null);
+
+    useEffect(() => {
+        
+        const chartInstance = chartRef.current.getEchartsInstance();
+
+        const option = {
+            legend: {
+              show: false,
+            },
+            series: [
+              {
+                name: 'Nightingale Chart',
+                type: 'pie',
+                radius: [60, 150],
+                center: ['50%', '50%'],
+                roseType: 'area',
+                itemStyle: {
+                  borderRadius: 8
+                },
+                data: [
+                    { value: 40, name: 'rose 1', itemStyle: { color: '#ff0000' } },
+                    { value: 38, name: 'rose 2', itemStyle: { color: '#00ff00' } },
+                    { value: 32, name: 'rose 3', itemStyle: { color: '#0000ff' } },
+                    { value: 30, name: 'rose 4', itemStyle: { color: '#ffff00' } },
+                    { value: 28, name: 'rose 5', itemStyle: { color: '#ff00ff' } },
+                    { value: 26, name: 'rose 6', itemStyle: { color: '#00ffff' } },
+                    { value: 22, name: 'rose 7', itemStyle: { color: '#000000' } },
+                    { value: 18, name: 'rose 8', itemStyle: { color: '#cfff77' } }
+                  ],
+                label: {
+                    show: false,
+                },
+                labelLine: {
+                    show: false,
+                },
+              }
+            ]
+          };
+
+        chartInstance.setOption(option);
+    }, []);
+
     return (
         <Stack
             direction="column"
@@ -23,8 +66,8 @@ const PieChart: React.FC = () => {
                 background: "white",
                 padding: "15px",
                 boxShadow: '0px 3px 10px #d3d2d2',
-                width: { sm: "200px", md: "300px" },
-                height: { sm: "200px", md: "300px" },
+                width: "25%",
+                height: "400px",
             }}
             alignItems="center"
         >
@@ -36,16 +79,19 @@ const PieChart: React.FC = () => {
                 <h3 style={{ margin: "5px 0px 0px 5px", padding: "0px" }}>Customers</h3>
                 <h6 style={{ margin: "5px 0px 0px 5px", padding: "0px", color: "#D5D5D5" }}>Customers that buy products</h6>
             </Stack>
+            
             <Stack
+            justifyContent="center"
+            alignSelf="center"
                 sx={{
-                    width: "80%",
+                    width: "330px",
+                    height: "330px",
                     position: "relative",
                     borderRadius: "50%",
                     background: "white",
                     margin: "20px",
-                    boxShadow: '0px 3px 10px #d3d2d2',
                 }}>
-
+                    <ReactECharts ref={chartRef} option={{}} style={{ height: '400px', margin: "0px" }} />
                 <div
                     style={{
                         position: 'absolute',

@@ -181,7 +181,7 @@ const Layout = () => {
                 container
                 direction="column"
                 sx={{
-                    marginLeft: { lg: "200px", md: "225px", xl: "256px" },
+                    marginLeft: {md: "150px", lg: "200px",  xl: "290px" },
                     background: "#f5f6f8",
                 }}
             >

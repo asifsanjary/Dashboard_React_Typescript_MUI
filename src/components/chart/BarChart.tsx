@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Stack } from '@mui/material';
-import echarts from 'echarts';
 import ReactECharts from 'echarts-for-react';
+import { EChartsOption, } from 'echarts';
 
 const BarChart: React.FC = () => {
 
@@ -11,68 +11,85 @@ const BarChart: React.FC = () => {
         setInterval(event.target.value as string);
     };
 
-    const xLabels = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-    ];
-
-    const uData = [
-        { value: 10, color: '#F2EFFF' },
-        { value: 15, color: '#F2EFFF' },
-        { value: 20, color: '#F2EFFF' },
-        { value: 5, color: '#F2EFFF' },
-        { value: 12, color: '#F2EFFF' },
-        { value: 18, color: '#F2EFFF' },
-        { value: 8, color: '#F2EFFF' },
-        { value: 25, color: '#5A32EA' },
-        { value: 14, color: '#F2EFFF' },
-        { value: 22, color: '#F2EFFF' },
-        { value: 7, color: '#F2EFFF' },
-        { value: 16, color: '#F2EFFF' },
-    ];
-
     const chartRef = useRef<any>(null);
 
     useEffect(() => {
-        // Initialize ECharts
         const chartInstance = chartRef.current.getEchartsInstance();
 
-        // Define your data
         const data = {
-            categories: ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5'],
-            values: [120, 200, 150, 80, 70],
+            categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec',
+            ],
+            values: [
+                10, 
+                15, 
+                22, 
+                17, 
+                7, 
+                2, 
+                12, 
+                13, 
+                24, 
+                14, 
+                9, 
+                23
+            ],
+            colors: [
+                '#F2EFFF',
+                '#F2EFFF',
+                '#F2EFFF',
+                '#F2EFFF',
+                '#F2EFFF',
+                '#F2EFFF',
+                '#F2EFFF',
+                '#F2EFFF',
+                '#5A32EA',
+                '#F2EFFF',
+                '#F2EFFF',
+                '#F2EFFF'
+            ]
         };
 
-        // Create the chart
-        const option = {
-            title: {
-                text: 'Bar Chart Example',
-            },
-            tooltip: {},
+        const option : EChartsOption = {
             xAxis: {
                 data: data.categories,
+                axisLine: {
+                    show: false,
+                },
+                axisTick: {
+                    show: false,
+                },
             },
-            yAxis: {},
+            yAxis: {
+                show: false,
+                splitLine: {
+                    show: false
+                }
+            },
             series: [
                 {
                     name: 'Value',
                     type: 'bar',
                     data: data.values,
+                    itemStyle: {
+                        borderRadius: [5, 5, 0, 0],
+                        color: params => data.colors[params.dataIndex],
+                    }
                 },
             ],
         };
 
-        // Set the chart option
         chartInstance.setOption(option);
     }, []);
 
@@ -84,8 +101,8 @@ const BarChart: React.FC = () => {
                 background: "white",
                 padding: "15px",
                 boxShadow: '0px 3px 10px #d3d2d2',
-                width: { sm: "300px", md: "500px", lg: "500px" },
-                height: { sm: "200px", md: "300px", lg: "300px" },
+                width: "70%",
+                height: "400px",
             }}
         >
             <Stack
@@ -104,7 +121,7 @@ const BarChart: React.FC = () => {
                     <option value="yearly">Yearly</option>
                 </select>
             </Stack>
-            <ReactECharts ref={chartRef} option={{}} style={{ height: '400px' }} />
+            <ReactECharts ref={chartRef} option={{}} style={{ height: '400px', margin: "0px" }} />
         </Stack>
     );
 };

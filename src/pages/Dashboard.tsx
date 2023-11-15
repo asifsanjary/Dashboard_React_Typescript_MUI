@@ -1,7 +1,7 @@
 import SummaryBox from '../components/SummaryBox';
 import summary from '../data/summary';
 import BarChart from '../components/chart/BarChart';
-// import PieChart from '../components/chart/PieChart';
+import PieChart from '../components/chart/PieChart';
 import ProductSell from '../components/productsell/ProductSell';
 import { Stack } from '@mui/material';
 
@@ -35,7 +35,7 @@ const Dashboard = () => {
                 alignItems="center"
             >
                 <BarChart />
-                {/* <PieChart /> */}
+                <PieChart />
             </Stack>
             <ProductSell />
         </Stack>
