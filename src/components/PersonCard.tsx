@@ -30,31 +30,25 @@ const PersonCard: React.FC<PersonCardProps> = ({ name, pictureUrl, role, isSmall
     };
 
     return (
-        <Paper elevation={3} style={{ padding: 5, display: 'flex', alignItems: 'center', backgroundColor: "#2D2D69", margin: "8px", marginTop: "auto", borderRadius: isSmallScreen ? "50%" : "0%" }}>
-            {!isSmallScreen ? (<>
-                <Avatar alt={name} src={pictureUrl} />
-                <div style={{ marginLeft: 16 }}>
-                    <Typography variant="body2" component="div" style={{ fontWeight: 'bold', marginBottom: '0px', paddingBottom: '0px' }}>
-                        {name}
-                    </Typography>
-                    <Typography variant="caption" color="#d5d5d5" style={{ fontSize: '0.6rem', marginTop: '0px', paddingBottom: '0px' }}>{role}</Typography>
-                </div>
+        <Paper elevation={3} style={{ padding: 5, display: 'flex', alignItems: 'center', backgroundColor: "#2D2D69", margin: "8px", marginTop: "auto", borderRadius: "10px" }}>
 
-                <IconButton
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                    style={{ marginLeft: 'auto' }}
-                >
-                    <ExpandMoreIcon />
-                </IconButton>
-            </>
-            ) : (
-                <div onClick={handleAvatarClick}>
-                    <Avatar alt={name} src={pictureUrl} />
-                </div>
-            )
-            }
+            <Avatar alt={name} src={pictureUrl} variant="rounded" />
+            <div style={{ marginLeft: 16 }}>
+                <Typography variant="body2" component="div" style={{ fontWeight: 'bold', marginBottom: '0px', paddingBottom: '0px', color: "white" }}>
+                    {name}
+                </Typography>
+                <Typography variant="caption" color="#d5d5d5" style={{ fontSize: '0.6rem', marginTop: '0px', paddingBottom: '0px' }}>{role}</Typography>
+            </div>
+
+            <IconButton
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+                style={{ marginLeft: 'auto' }}
+            >
+                <ExpandMoreIcon sx={{color: "white"}} />
+            </IconButton>
+
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}
