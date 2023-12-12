@@ -1,9 +1,14 @@
-import React from 'react'
+import { Stack } from '@mui/material';
+import React from 'react';
 
 const NotFound = () => {
     return (
-        <div>404</div>
-    )
-}
+        <Stack
+            direction="column"
+            spacing={4}
+        >
+        </Stack>
+    );
+};
 
-export default NotFound
+export default NotFound;

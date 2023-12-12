@@ -1,173 +1,142 @@
 import React from 'react';
-import { Outlet, NavLink, useLocation } from "react-router-dom";
-import routes, { getPathName } from '../data/routes';
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import { Outlet, NavLink } from "react-router-dom";
+import routes from '../data/routes';
+import LoginIcon from '@mui/icons-material/Login';
 import TokenOutlinedIcon from '@mui/icons-material/TokenOutlined';
 import Header from './Header';
 import PersonCard from './PersonCard';
-import { Grid, Stack, Typography } from '@mui/material';
+import { Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, Typography, styled, useMediaQuery } from '@mui/material';
 
-type SelectChangeEvent = {
-    target: {
-        value: string;
-    };
-};
+const drawerWidth = 240;
+
+const Main = styled(Stack, { shouldForwardProp: (prop) => prop !== 'open' })<{
+    open?: boolean;
+}>(({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-${drawerWidth}px`,
+    ...(open && {
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
+    }),
+}));
 
 const Layout = () => {
 
-    const [isScreenSmall, setScreenSmall] = React.useState(false);
+    const isMediumScreen = useMediaQuery('(min-width: 900px)');
+    const [open, setOpen] = React.useState(isMediumScreen);
 
-    React.useEffect(() => {
-        function handleResize() {
-            setScreenSmall(window.innerWidth <= 750);
-        }
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    const location = useLocation();
-
-    const [selectedOption, setSelectedOption] = React.useState('/');
-
-    const handleChange = (event: SelectChangeEvent) => {
-        setSelectedOption(event.target.value as string);
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+    const handleDrawerClose = () => {
+        setOpen(false);
     };
 
     return (
-        <Grid
-            container
+        <Stack
             direction="row"
-            md={12}
-            lg={12}
             sx={{
-                height: "100vh"
+                height: "100vh",
+                width: "100%",
             }}>
-            <Grid
-                item
-                container
-                direction="column"
-                lg={2}
-                md={3}
+            <Drawer
                 sx={{
-                    background: "#040440",
-                    position: "fixed",
-                    overflowY: "auto",
-                    top: "0px",
-                    bottom: "0px",
-                    height: "100vh"
+                    width: drawerWidth,
+                    flexShrink: 0,
+                    '& .MuiDrawer-paper': {
+                        width: drawerWidth,
+                        boxSizing: 'border-box',
+                        backgroundColor: "#040440",
+                    },
                 }}
+                variant="persistent"
+                anchor="left"
+                open={open}
             >
-                <Grid
-                    item
-                    container
-                    direction="row"
-                    sx={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginTop: "10px",
-                        marginBottom: "10px",
-                    }}
-                >
-                    <TokenOutlinedIcon
-                        style=
-                        {{
-                            fontSize: "1.5rem",
-                            color: "white"
-                        }}
-                    />
-                    <Typography
-                        sx={{
-                            fontSize: "1.5rem",
-                            color: "white"
-                        }}
-                    >
-                        {getPathName(location.pathname)}
-                    </Typography>
-                </Grid>
-
-                {routes.map((route, index) => (
-                    <NavLink
-                        style={{
-                            textDecoration: "none",
-                        }}
-                        key={index}
-                        to={route.path}>
-                        {({ isActive }) => {
-                            if (isActive) return (
-                                <Stack
-                                    direction="row"
-                                    justifyContent="flex-start"
-                                    alignItems="center"
-                                    gap="4px"
-                                    sx={{
-                                        background: " #2d2d69",
-                                        color: "white",
-                                        margin: "8px 16px",
-                                        borderRadius: "6px",
-                                        padding: "6px",
-                                        boxShadow: '0px 1px 6px #2d2d69',
-                                    }}
-                                >
-                                    {route.icon}
-                                    <Typography
-                                        sx=
-                                        {{
-                                            fontSize: "12px"
-                                        }}
-                                    >
-                                        {route.name}
-                                    </Typography>
-                                </Stack>
-                            );
-                            else {
-                                return (
-                                    <Stack
-                                        direction="row"
-                                        justifyContent="space-between"
-                                        alignItems="center"
-                                        sx={{
+                <Stack direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    spacing={2}
+                    sx={{ padding: "10px 20px" }}>
+                    <Stack direction="row"
+                        justifyContent="flex-start"
+                        alignItems="center"
+                        spacing={1}>
+                        <TokenOutlinedIcon
+                            style=
+                            {{
+                                fontSize: "1.5rem",
+                                color: "white"
+                            }}
+                        />
+                        <Typography
+                            sx={{
+                                fontSize: "1.5rem",
+                                color: "white"
+                            }}
+                        >
+                            Demo
+                        </Typography>
+                    </Stack>
+                    <IconButton onClick={handleDrawerClose}>
+                        <LoginIcon sx={{ color: "white", transform: 'rotate(180deg)' }} />
+                    </IconButton>
+                </Stack>
+                <Divider sx={{ background: "white" }} />
+                <List>
+                    {routes.map((route, index) => (
+                        <NavLink
+                            style={{
+                                textDecoration: "none",
+                            }}
+                            key={index}
+                            to={route.path}>
+                            {({ isActive }) => {
+                                if (isActive) return (
+                                    <ListItem key={index} disablePadding>
+                                        <ListItemButton sx={{
                                             color: "white",
-                                            margin: "8px 16px",
-                                            borderRadius: "4px",
-                                            padding: "6px",
-                                        }}
-                                    >
-                                        <Stack
-                                            direction="row"
-                                            justifyContent="flex-start"
-                                            alignItems="center"
-                                            gap="4px"
-                                        >
-                                            {route.icon}
-                                            <Typography
-                                                sx=
-                                                {{
-                                                    fontSize: "12px"
-                                                }}
-                                            >
-                                                {route.name}
-                                            </Typography>
-                                        </Stack>
-                                        <ArrowForwardIosOutlinedIcon
-                                            style=
-                                            {{
-                                                fontSize: "10px",
-
-                                            }}
-                                        />
-                                    </Stack>
+                                            background: " #2d2d69",
+                                            boxShadow: '0px 1px 6px #2d2d69',
+                                            margin: "4px 8px",
+                                            borderRadius: "6px",
+                                            padding: "4px 8px",
+                                        }}>
+                                            <ListItemIcon sx={{
+                                                color: "white",
+                                            }}>
+                                                {route.icon}
+                                            </ListItemIcon>
+                                            <ListItemText primary={route.name} />
+                                        </ListItemButton>
+                                    </ListItem>
                                 );
-                            }
-                        }}
-                    </NavLink>
-                ))}
-                <PersonCard name='Evano' role='Project Manager' pictureUrl='https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg' isSmallScreen={isScreenSmall} />
-            </Grid>
+                                else return (<ListItem key={index} disablePadding>
+                                    <ListItemButton sx={{
+                                        color: "white",
+                                    }}>
+                                        <ListItemIcon sx={{
+                                            color: "white",
+                                        }}>
+                                            {route.icon}
+                                        </ListItemIcon>
+                                        <ListItemText primary={route.name} />
+                                    </ListItemButton>
+                                </ListItem>);
+                            }}
+                        </NavLink>
+                    ))}
+                </List>
+                <PersonCard name='Evano' role='Project Manager' pictureUrl='https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg' />
+            </Drawer>
             {/*
                 https://mui.com/material-ui/customization/breakpoints/#default-breakpoints
                 xs, extra-small: 0px
@@ -176,19 +145,18 @@ const Layout = () => {
                 lg, large: 1200px
                 xl, extra-large: 1536px
             */}
-            <Grid
-                item
-                container
+            <Main
+                open={open}
                 direction="column"
                 sx={{
-                    marginLeft: {md: "150px", lg: "200px",  xl: "290px" },
                     background: "#f5f6f8",
+                    width: "100%"
                 }}
             >
-                <Header />
+                <Header handleDrawerOpen={handleDrawerOpen} open={open} />
                 <Outlet />
-            </Grid>
-        </Grid>
+            </Main>
+        </Stack>
     );
 };
 

@@ -1,9 +1,14 @@
-import React from 'react'
+import { Stack } from '@mui/material';
+import React from 'react';
 
 const Income = () => {
     return (
-        <div>Income</div>
-    )
-}
+        <Stack
+            direction="column"
+            spacing={4}
+        >
+        </Stack>
+    );
+};
 
-export default Income
+export default Income;

@@ -9,9 +9,6 @@ const Dashboard = () => {
     return (
         <Stack
             direction="column"
-            sx={{
-                margin: "0px 50px"
-            }}
             spacing={4}
         >
             <Stack

@@ -1,10 +1,11 @@
 # Demo WebPage
 
 ## TODO:
-- [ ] Use MUI Table for the Bottom Table of the Page
-- [ ] Add Navigation Bar for Mobile WebPage and Hide the Desktop Navigation Bar
-- [ ] Change Pie Chart and Bar Chart Color according to Page Theme
+- [x] Use MUI Table for the Bottom Table of the Page
+- [x] Add Navigation Bar for Mobile WebPage and Hide the Desktop Navigation Bar
+- [x] Change Pie Chart and Bar Chart Color according to Page Theme
 - [ ] Change Avatar both on Desktop and Mobile Navigation Bar
+- [ ] Make mobile responsive as much as possible
 
 ## Available Scripts
 

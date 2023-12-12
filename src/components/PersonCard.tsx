@@ -11,10 +11,9 @@ interface PersonCardProps {
     name: string;
     pictureUrl: string;
     role: string;
-    isSmallScreen: boolean;
 }
 
-const PersonCard: React.FC<PersonCardProps> = ({ name, pictureUrl, role, isSmallScreen }) => {
+const PersonCard: React.FC<PersonCardProps> = ({ name, pictureUrl, role }) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -46,7 +45,7 @@ const PersonCard: React.FC<PersonCardProps> = ({ name, pictureUrl, role, isSmall
                 onClick={handleClick}
                 style={{ marginLeft: 'auto' }}
             >
-                <ExpandMoreIcon sx={{color: "white"}} />
+                <ExpandMoreIcon sx={{ color: "white" }} />
             </IconButton>
 
             <Menu

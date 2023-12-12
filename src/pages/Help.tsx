@@ -1,9 +1,14 @@
-import React from 'react'
+import { Stack } from '@mui/material';
+import React from 'react';
 
 const Help = () => {
     return (
-        <div>Help</div>
-    )
-}
+        <Stack
+            direction="column"
+            spacing={4}
+        >
+        </Stack>
+    );
+};
 
-export default Help
+export default Help;
